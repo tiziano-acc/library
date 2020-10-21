@@ -4,8 +4,14 @@
         <label for="booksQuery">Ricerca libro</label>
         <input type="text" class="form-control" id="booksQuery" [formControl]="booksQuery">
     </div>
+    <div class="col-lg-3">
+        <label for="itemsPerPage">Risultati per pagina</label>
+        <select class="form-control" id="itemsPerPage" [(ngModel)]="itemsPerPage" (change)="updateCurrentPage()">
+            <option *ngFor="let option of itemsPerPageOptions" [ngvalue]="option">{{option}}</option>
+        </select>
+    </div>
 </div>
-<div class="row">
+<div class="row" *ngIf="currentPageBooks.length > 0">
     <div class="col">
         <table class="table">
             <thead>
@@ -17,8 +23,8 @@
                 <th scope="col">Descrizione</th>
             </tr>
             </thead>
-            <tbody *ngIf="booksList !== undefined">
-            <tr *ngFor="let book of booksList.items; let i = index">
+            <tbody>
+            <tr *ngFor="let book of currentPageBooks; let i = index" routerLink="/book-info" [state]="book">
                 <th>{{book.volumeInfo.publishedDate | slice:0:4}}</th>
                 <td>{{book.volumeInfo.title}}</td>
                 <td>{{book.volumeInfo.authors}}</td>
@@ -27,5 +33,13 @@
             </tr>
             </tbody>
         </table>
+    </div>
+</div>
+<div class="row" *ngIf="currentPageBooks.length > 0">
+    <div class="col-lg-2">
+        <label for="currentPage">N° pagina</label>
+        <select class="form-control" id="currentPage" [(ngModel)]="currentPage" (change)="updateCurrentPage()">
+            <option *ngFor="let option of numberOfPagesOptions" [ngvalue]="option">{{option}}</option>
+        </select>
     </div>
 </div>
