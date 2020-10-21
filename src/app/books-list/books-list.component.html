@@ -1,1 +1,31 @@
-<p>books-list works!</p>
+
+<div class="row">
+    <div class="col-lg-3">
+        <label for="booksQuery">Ricerca libro</label>
+        <input type="text" class="form-control" id="booksQuery" [formControl]="booksQuery">
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Anno</th>
+                <th scope="col">Titolo</th>
+                <th scope="col">Autore</th>
+                <th scope="col">Editore</th>
+                <th scope="col">Descrizione</th>
+            </tr>
+            </thead>
+            <tbody *ngIf="booksList !== undefined">
+            <tr *ngFor="let book of booksList.items; let i = index">
+                <th>{{book.volumeInfo.publishedDate | slice:0:4}}</th>
+                <td>{{book.volumeInfo.title}}</td>
+                <td>{{book.volumeInfo.authors}}</td>
+                <td>{{book.volumeInfo.publisher}}</td>
+                <td>{{book.volumeInfo.description | truncate}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
