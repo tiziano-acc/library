@@ -25,11 +25,11 @@
             </thead>
             <tbody>
             <tr *ngFor="let book of currentPageBooks; let i = index" routerLink="/book-info" [state]="book">
-                <th>{{book.volumeInfo.publishedDate | slice:0:4}}</th>
-                <td>{{book.volumeInfo.title}}</td>
-                <td>{{book.volumeInfo.authors}}</td>
-                <td>{{book.volumeInfo.publisher}}</td>
-                <td>{{book.volumeInfo.description | truncate}}</td>
+                <th>{{book.publishedDate | slice:0:4}}</th>
+                <td>{{book.title}}</td>
+                <td>{{book.authors}}</td>
+                <td>{{book.publisher}}</td>
+                <td>{{book.description | truncate}}</td>
             </tr>
             </tbody>
         </table>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
+import { Book } from '../book.model';
 import { BooksService } from '../books.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { BooksService } from '../books.service';
   styleUrls: ['./books-list.component.css']
 })
 export class BooksListComponent implements OnInit {
-  public booksList: any;
+  public booksList: Array<Book>;
   public booksQuery = new FormControl();
   public currentPageBooks = [];
   public currentPage = 1;
@@ -29,7 +30,7 @@ export class BooksListComponent implements OnInit {
   }
 
   createNumberOfPagesOptions() {
-    let numberOfPages = Math.ceil(this.booksList.items.length/this.itemsPerPage);
+    let numberOfPages = Math.ceil(this.booksList.length/this.itemsPerPage);
 
     for(let i=1; i<=numberOfPages; i++) {
       this.numberOfPagesOptions.push(i);
@@ -44,12 +45,12 @@ export class BooksListComponent implements OnInit {
       firstItemIndex = 0;
     }
 
-    if((lastItemIndex+1) > this.booksList.items.length) {
-      lastItemIndex = this.booksList.items.length-1;
+    if((lastItemIndex+1) > this.booksList.length) {
+      lastItemIndex = this.booksList.length-1;
     }
 
     for(let i=firstItemIndex; i<=lastItemIndex; i++) {
-      this.currentPageBooks.push(this.booksList.items[i]);
+      this.currentPageBooks.push(this.booksList[i]);
     }
 
   }

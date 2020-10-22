@@ -1,6 +1,6 @@
 <div class="row">
-    <div class="col-md-2" *ngIf="coverLink !== undefined">
-        <img [src]="coverLink">
+    <div class="col-md-2" *ngIf="book.smallThumbnail !== undefined">
+        <img [src]="book.smallThumbnail">
     </div>
     <div class="col-md-10">
         <h1>{{book.title}}</h1>
@@ -21,6 +21,6 @@
 </div>
 <div class="row">
     <div class="col">
-        <a target="_blank" [href]="infoLink">Guarda su Google Libri</a>
+        <a target="_blank" [href]="book.infoLink">Guarda su Google Libri</a>
     </div>
 </div>
