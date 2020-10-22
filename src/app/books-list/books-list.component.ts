@@ -37,13 +37,15 @@ export class BooksListComponent implements OnInit {
   }
 
   extractCurrentPage() {
-    let lastItemIndex = (this.currentPage*this.itemsPerPage) - 1;
-    let firstItemIndex;
+    let lastItemIndex = (this.currentPage*this.itemsPerPage)-1;
+    let firstItemIndex = (lastItemIndex-this.itemsPerPage)+1;
     
     if(lastItemIndex-this.itemsPerPage < 0) {
       firstItemIndex = 0;
-    } else {
-      firstItemIndex = lastItemIndex-this.itemsPerPage;
+    }
+
+    if((lastItemIndex+1) > this.booksList.items.length) {
+      lastItemIndex = this.booksList.items.length-1;
     }
 
     for(let i=firstItemIndex; i<=lastItemIndex; i++) {
@@ -55,7 +57,7 @@ export class BooksListComponent implements OnInit {
   updateCurrentPage() {
     this.currentPageBooks = [];
     this.numberOfPagesOptions = [];
-    
+
     this.createNumberOfPagesOptions();
     this.extractCurrentPage();
   }

@@ -6,8 +6,8 @@
     </div>
     <div class="col-lg-3">
         <label for="itemsPerPage">Risultati per pagina</label>
-        <select class="form-control" id="itemsPerPage" [(ngModel)]="itemsPerPage" (change)="updateCurrentPage()">
-            <option *ngFor="let option of itemsPerPageOptions" [ngvalue]="option">{{option}}</option>
+        <select class="form-control" id="itemsPerPage" [(ngModel)]="itemsPerPage" (change)="currentPage = 1; updateCurrentPage()">
+            <option *ngFor="let option of itemsPerPageOptions" [ngValue]="option">{{option}}</option>
         </select>
     </div>
 </div>
@@ -39,7 +39,7 @@
     <div class="col-lg-2">
         <label for="currentPage">N° pagina</label>
         <select class="form-control" id="currentPage" [(ngModel)]="currentPage" (change)="updateCurrentPage()">
-            <option *ngFor="let option of numberOfPagesOptions" [ngvalue]="option">{{option}}</option>
+            <option *ngFor="let option of numberOfPagesOptions" [ngValue]="option">{{option}}</option>
         </select>
     </div>
 </div>
